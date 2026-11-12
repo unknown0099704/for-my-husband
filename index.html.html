@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Love! ❤️</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #f43f5e;
+      --text-light: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    p.subtitle {
+      color: var(--text-dim);
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+
+    .time-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px 10px;
+      border-radius: 12px;
+      width: 22%;
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .time-box label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .message-box {
+      display: none;
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px dashed var(--accent);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Counting Down To Your Day ❤️</h1>
+    <p class="subtitle">Aaj us ka din hai, jis se mera har din hai...</p>
+
+    <div class="countdown" id="countdown">
+      <div class="time-box">
+        <span id="days">00</span>
+        <label>Days</label>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <label>Hours</label>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <label>Mins</label>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <label>Secs</label>
+      </div>
+    </div>
+
+    <div class="message-box" id="celebration-message">
+      🎉 <strong>Happy Birthday, My Heart!</strong> 🎉<br>
+      Even though we are miles apart right now, every single piece of my heart is with you today. Thank you for making my life complete. I love you endlessly! ❤️
+    </div>
+  </div>
+
+  <footer>Made with love, just for you.</footer>
+
+  <script>
+    // Set target birthday date and time (Year, Month Index (0-11), Day, Hours, Minutes)
+    // Note: Month is 0-indexed (e.g., January = 0, December = 11)
+    const targetDate = new Date(2026, 10, 15, 0, 0, 0).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById('countdown').style.display = 'none';
+        document.getElementById('celebration-message').style.display = 'block';
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
